@@ -1,0 +1,4 @@
+/* Menggunakan sintaks terbaru untuk Tailwind CSS */
+@import "tailwindcss/preflight";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
