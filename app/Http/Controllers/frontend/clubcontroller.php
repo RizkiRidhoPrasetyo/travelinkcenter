@@ -10,6 +10,12 @@ class clubcontroller extends Controller
 {
     public function index(){
         $travelinkPackages = TravelinkPackage::all();
-        return view('frontend.club', compact('travelinkPackages', 'benefits'));
+
+        // Query untuk promo yang akan berakhir dalam 28 hari menggunakan kolom expired_at
+        $expiringPromos = TravelinkPackage::whereNotNull('promo_price')
+            ->where('expired_at', '<=', now()->addDays(28))
+            ->get();
+
+        return view('frontend.club', compact('travelinkPackages', 'expiringPromos'));
     }
 }

@@ -20,4 +20,16 @@ class TravelinkPackageController extends Controller
 
         return view('frontend.club', compact('travelinkPackages'));
     }
+
+    public function topDestinations()
+    {
+        $topDestinations = TravelinkPackage::all(); // Fetch all TravelinkPackage data
+        return view('frontend.top_destinations', compact('topDestinations'));
+    }
+
+    public function topDeals()
+    {
+        $topDeals = TravelinkPackage::all(); // Fetch all TravelinkPackage data
+        return view('frontend.top_deals', compact('topDeals'));
+    }
 }

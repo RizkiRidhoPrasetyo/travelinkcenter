@@ -29,7 +29,7 @@ Route::get('/travelink/login', function () {
     return view('auth.login'); // Return the custom login view
 })->name('admin.login');
 
-Route::get('/travelinkclub', [\App\Http\Controllers\Frontend\TravelinkPackageController::class, 'club'])->name('travelinkclub');
+Route::get('/travelinkclub', [\App\Http\Controllers\frontend\clubcontroller::class, 'index'])->name('travelinkclub');
 
 // Add a route for login to resolve the error
 // Route::get('/login', function () {
@@ -51,15 +51,9 @@ Route::get('/travelinkclub/benefits', [\App\Http\Controllers\Frontend\TravelinkP
 Route::get('/benefits', function () {
     return view('frontend.club'); // Sesuaikan view jika diperlukan
 })->name('benefits');
-Route::get('/top-destinations', function () {
-    $travelinkPackages = \App\Models\TravelinkPackage::all();
-    return view('frontend.top_destinations', compact('travelinkPackages'));
-})->name('top-destinations');
+Route::get('/top-destinations', [\App\Http\Controllers\Frontend\TravelinkPackageController::class, 'topDestinations'])->name('top-destinations');
 
-Route::get('/top-deals', function () {
-    $travelinkPackages = \App\Models\TravelinkPackage::all();
-    return view('frontend.top_deals', compact('travelinkPackages'));
-})->name('top-deals');
+Route::get('/top-deals', [\App\Http\Controllers\Frontend\TravelinkPackageController::class, 'topDeals'])->name('top-deals');
 
 Route::get('/lifestyle', function () {
     return view('frontend.lifestyle');

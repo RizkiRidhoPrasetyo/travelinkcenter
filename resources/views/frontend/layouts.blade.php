@@ -27,7 +27,7 @@
                     <li class="nav-item">
                         <a class="nav-link {{ request()->is('/') ? 'active' : '' }}" href="/"
                             style="background-color: {{ request()->is('/') ? '#ff7f00' : 'transparent' }}; color: {{ request()->is('/') ? 'white' : 'inherit' }}; 
-                            border-radius: 10px; padding: 5px 10px; border: {{ request()->is('/') ? '2px solid #2D2766' : 'none' }};">Home</a>
+                            border-radius: 10px; padding: 5px 10px; border: {{ request()->is('/') ? '2px solid #2D2766' : 'none' }};">Homes</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link {{ request()->is('top-destinations') ? 'active' : '' }}" href="{{ route('top-destinations') }}"
@@ -42,10 +42,11 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle {{ request()->is('blog.html') ? 'active' : '' }}" href="#" id="outlookDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"
                             style="background-color: {{ request()->is('blog.html') ? '#E87817' : 'transparent' }}; color: {{ request()->is('blog.html') ? 'white' : 'inherit' }}; 
-                            border-radius: 10px; padding: 5px 10px; border: {{ request()->is('blog.html') ? '2px solid #2D2766' : 'none' }};">
+                            border-radius: 10px; padding: 5px 10px; border: {{ request()->is('blog.html') ? '2px solid #2D2766' : 'none' }};"
+                            onclick="document.getElementById('outlookDropdownMenu').classList.toggle('show');">
                             Outlook
                         </a>
-                        <ul class="dropdown-menu" aria-labelledby="outlookDropdown">
+                        <ul class="dropdown-menu" id="outlookDropdownMenu" aria-labelledby="outlookDropdown">
                             <li><a class="dropdown-item" href="#">Calendar of Event</a></li>
                             <li><a class="dropdown-item" href="#">Education</a></li>
                             <li><a class="dropdown-item" href="#">Opinion</a></li>
@@ -73,9 +74,15 @@
         <div class="row">
             <div class="col-md-4">
                 <h5 class="text-uppercase">Our Social Media</h5>
-                <a href="#" class="text-white me-3"><i class="bi bi-facebook"></i></a>
-                <a href="#" class="text-white me-3"><i class="bi bi-twitter"></i></a>
-                <a href="#" class="text-white"><i class="bi bi-youtube"></i></a>
+                <a href="https://www.instagram.com/travelinkcenter" class="text-white me-3" target="_blank">
+                    <img src="{{ asset('assets/images/instagram.png') }}" alt="Instagram" style="width: 24px; height: 24px;">
+                </a> <!-- Added Instagram icon -->
+                <a href="https://wa.me/0895366515139" class="text-white me-3" target="_blank">
+                    <img src="{{ asset('assets/images/whatsapp.png') }}" alt="WhatsApp" style="width: 24px; height: 24px;">
+                </a> <!-- Added WhatsApp icon -->
+                <a href="https://www.tiktok.com/@travelinkcenter" class="text-white" target="_blank">
+                    <img src="{{ asset('assets/images/tiktok.png') }}" alt="TikTok" style="width: 24px; height: 24px;">
+                </a> <!-- Added TikTok icon -->
             </div>
             <div class="col-md-4">
                 <h5 class="text-uppercase">Back to</h5>
