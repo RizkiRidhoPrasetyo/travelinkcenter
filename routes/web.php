@@ -1,11 +1,18 @@
+
 <?php
+// ...existing code...
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\TravelinkcenteradminController; 
-use App\Http\Controllers\RegisterController;
-use App\Http\Controllers\LoginController;
+use App\Http\Controllers\Frontend\TravelinkPackageController;
 use App\Models\TravelinkPackage;
 use App\Http\Controllers\InteractionController;
+use App\Http\Controllers\PackageCommentController;
+use App\Http\Controllers\PackageLikeController;
+use App\Http\Controllers\BookingController;
+
+// Booking routes
+Route::get('/booking/{package}', [BookingController::class, 'create'])->name('booking.create');
+Route::post('/booking', [BookingController::class, 'store'])->name('booking.store');
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -31,22 +38,17 @@ Route::get('/travelink/login', function () {
 
 Route::get('/travelinkclub', [\App\Http\Controllers\frontend\clubcontroller::class, 'index'])->name('travelinkclub');
 
-// Add a route for login to resolve the error
-// Route::get('/login', function () {
-//     return view('auth.login');
-// })->name('login');
 
-// Route untuk proses registrasi
-Route::post('/register', [RegisterController::class, 'store'])->name('register.store');
 
-// Route untuk proses login
-Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
-Route::post('/login', [LoginController::class, 'login'])->name('login.post');
+// Route autentikasi akan dihandle oleh Laravel Breeze
+require __DIR__.'/auth.php';
 
 // Route paket travelink
 Route::get('/Paket-travel', [\App\Http\Controllers\frontend\TravelinkPackageController::class, 'index']);
 Route::post('/packages/{id}/like', [InteractionController::class, 'like'])->name('packages.like');
 Route::post('/packages/{id}/comment', [InteractionController::class, 'comment'])->name('packages.comment');
+Route::post('/package/{id}/comment', [PackageCommentController::class, 'store'])->name('package.comment');
+Route::get('/package/{id}/comments', [PackageCommentController::class, 'list'])->name('package.comments');
 Route::get('/travelinkclub/benefits', [\App\Http\Controllers\Frontend\TravelinkPackageController::class, 'club'])->name('travelinkclub.benefits');
 Route::get('/benefits', function () {
     return view('frontend.club'); // Sesuaikan view jika diperlukan
@@ -58,3 +60,5 @@ Route::get('/top-deals', [\App\Http\Controllers\Frontend\TravelinkPackageControl
 Route::get('/lifestyle', function () {
     return view('frontend.lifestyle');
 })->name('lifestyle');
+Route::post('/package/{id}/like', [PackageLikeController::class, 'toggle'])->name('package.like');
+Route::get('/package/{id}/like-count', [PackageLikeController::class, 'count'])->name('package.like.count');

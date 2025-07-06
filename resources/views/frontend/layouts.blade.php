@@ -27,7 +27,7 @@
                     <li class="nav-item">
                         <a class="nav-link {{ request()->is('/') ? 'active' : '' }}" href="/"
                             style="background-color: {{ request()->is('/') ? '#ff7f00' : 'transparent' }}; color: {{ request()->is('/') ? 'white' : 'inherit' }}; 
-                            border-radius: 10px; padding: 5px 10px; border: {{ request()->is('/') ? '2px solid #2D2766' : 'none' }};">Homes</a>
+                            border-radius: 10px; padding: 5px 10px; border: {{ request()->is('/') ? '2px solid #2D2766' : 'none' }};">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link {{ request()->is('top-destinations') ? 'active' : '' }}" href="{{ route('top-destinations') }}"
