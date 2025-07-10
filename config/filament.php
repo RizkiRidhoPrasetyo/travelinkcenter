@@ -15,6 +15,19 @@ return [
     */
 
     'broadcasting' => [
+    /*
+    |--------------------------------------------------------------------------
+    | Auth Guard
+    |--------------------------------------------------------------------------
+    |
+    | This option controls the authentication guard that Filament will use.
+    | Set this to 'admin' to use the admin guard for Filament login.
+    |
+    */
+
+    'auth' => [
+        // 'guard' => 'admin',
+    ],
 
         // 'echo' => [
         //     'broadcaster' => 'pusher',

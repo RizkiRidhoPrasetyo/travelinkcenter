@@ -23,4 +23,25 @@ class TravelinkPackage extends Model
     {
         return $this->hasMany(Comment::class);
     }
+
+    // Relationship for ratings
+    public function ratings()
+    {
+        return $this->hasMany(PackageRating::class, 'package_id');
+    }
+
+    // Get average rating
+    public function averageRating()
+    {
+        return $this->ratings()->avg('rating');
+    }
+
+    // Get rating statistics (count per rating value)
+    public function ratingStats()
+    {
+        return $this->ratings()
+            ->selectRaw('rating, COUNT(*) as count')
+            ->groupBy('rating')
+            ->pluck('count', 'rating');
+    }
 }

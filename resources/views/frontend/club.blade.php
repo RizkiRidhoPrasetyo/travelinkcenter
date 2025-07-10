@@ -1,3 +1,15 @@
+@if(session('success'))
+        <div class="alert alert-success alert-dismissible fade show mt-3" role="alert">
+            {{ session('success') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
+    @if(session('error'))
+        <div class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
+            {{ session('error') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
 @extends('frontend.layouts')
 
 @section('content')
@@ -18,6 +30,8 @@
                     @csrf
                     <button type="submit" class="btn" style="background-color: #dc3545; color: white; text-align: left; display: inline-block; margin-left: 8px;">Logout</button>
                 </form>
+                <!-- Button Cetak Member Card -->
+                <a href="{{ route('member.card.pdf') }}" target="_blank" class="btn" style="background-color: #ffc107; color: #2D2766; text-align: left; display: inline-block; margin-left: 8px;">Cetak Member Card</a>
                 @else
                 <a href="#" class="btn" style="background-color: #2D2766; color: white; text-align: left; display: inline-block;" data-bs-toggle="modal" data-bs-target="#loginModal">Login</a>
                 @endauth
@@ -41,7 +55,7 @@
                     <ul class="navbar-nav ms-auto">
                         @auth
                         <li class="nav-item">
-                            <a class="nav-link" href="#">History</a>
+                            <a class="nav-link" href="{{ route('booking.history') }}">History</a>
                         </li>
                         @endauth
                         <li class="nav-item">
@@ -175,7 +189,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <img id="modalImage" src="" alt="Detail Image" class="img-fluid mb-3" style="border-radius: 10px; max-height: 350px; object-fit: contain;"> <!-- Increased max-height for larger image -->
+                    <img id="modalImage" src="" alt="Detail Image" class="img-fluid mb-3 w-100" style="border-radius: 10px; max-height: 500px; object-fit: cover; object-position: center;"> <!-- Increased max-height and width for larger image -->
                     <h5 id="modalTitle" class="fw-bold"></h5>
                     <p id="modalRegion" class="text-muted"></p>
                     <p id="modalPrice" class="text-muted"></p>
@@ -188,9 +202,9 @@
                         <button class="btn btn-outline-primary btn-sm" id="modalLikeBtn">
                             <i class="bi bi-hand-thumbs-up"></i> <span id="modalLikeText">Like</span> (<span id="modalLikeCount">0</span>)
                         </button>
-                        <button class="btn btn-outline-secondary btn-sm" id="modalCommentBtn"><i class="bi bi-chat"></i> Comment</button>
-                        <button class="btn btn-outline-success btn-sm" id="modalShareBtn"><i class="bi bi-share"></i> Share</button>
+                        <button class="btn btn-outline-secondary btn-sm" id="modalCommentBtn"><i class="bi bi-chat"></i> Ulasan</button>
                     </div>
+                    <!-- Share button only, no rating stats -->
                     <div class="comments-section mt-2" id="modalCommentsSection" style="display:none;">
                         <form class="form-comment d-flex mb-2" id="modalCommentForm">
                             <input type="text" name="comment" class="form-control form-control-sm me-2" placeholder="Write a comment..." required>
@@ -298,6 +312,7 @@ $(function() {
         });
     });
 });
+    // Remove rating feature, keep only share button
     </script>
 
     @include('frontend.partials.breeze_register_popup')

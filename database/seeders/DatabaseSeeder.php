@@ -12,7 +12,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // Default seeder logic
-        // \App\Models\User::factory(10)->create();
+        // Tambahkan seeder lain di sini jika diperlukan
     }
 }

@@ -1,14 +1,17 @@
 <?php
-
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Benefit;
-use App\Models\TravelinkPackage; // Pastikan model ini di-import
+use App\Models\TravelinkPackage;
+use App\Models\PackageRating;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class TravelinkPackageController extends Controller
 {
+    // ...existing code...
     public function index()
     {
         return view('frontend.packagetravel.index');

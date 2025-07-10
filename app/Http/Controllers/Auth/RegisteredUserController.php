@@ -49,7 +49,7 @@ class RegisteredUserController extends Controller
         event(new Registered($user));
 
         Auth::login($user);
-
-        return redirect()->intended('/');
+        // Redirect ke halaman travelinkclub setelah registrasi, namun user tetap harus verifikasi email untuk akses fitur tertentu
+        return redirect()->route('travelinkclub');
     }
 }

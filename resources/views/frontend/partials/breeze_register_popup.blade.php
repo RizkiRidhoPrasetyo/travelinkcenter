@@ -6,6 +6,11 @@
                 <button type="button" class="btn-close position-absolute end-0 top-0 m-3" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
+                @if($errors->any())
+                    <div class="alert alert-danger">
+                        {{ $errors->first() }}
+                    </div>
+                @endif
                 <form method="POST" action="{{ route('register.store') }}">
                     @csrf
                     <div class="mb-3">

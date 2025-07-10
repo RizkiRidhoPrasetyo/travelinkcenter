@@ -16,12 +16,22 @@ class VerifyEmailController extends Controller
     public function __invoke(EmailVerificationRequest $request)
     {
         $user = $request->user();
+        if (!$user) {
+            // Auto-login user berdasarkan ID dari URL jika belum login
+            $userId = $request->route('id');
+            $user = User::find($userId);
+            if ($user) {
+                Auth::login($user);
+            } else {
+                return redirect()->route('travelinkclub')->with('error', 'User tidak ditemukan.');
+            }
+        }
         if (! $user->hasVerifiedEmail()) {
             $user->markEmailAsVerified();
             // Set status to active after email verification
             $user->status = 'active';
             $user->save();
         }
-        return redirect()->intended('travelinkclub');
+        return redirect()->route('travelinkclub')->with('success', 'Email berhasil diverifikasi!');
     }
 }

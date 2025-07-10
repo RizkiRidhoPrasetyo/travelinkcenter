@@ -13,9 +13,14 @@ class AuthenticatedSessionController extends Controller
     /**
      * Display the login view.
      */
-    public function create(): View
+public function create()
     {
-        return view('auth.login');
+        // Jika user sudah login, langsung redirect ke travelinkclub
+        if (Auth::check()) {
+            return redirect()->route('travelinkclub');
+        }
+        // Jika tidak, redirect ke travelinkclub (atau bisa tampilkan modal login di halaman tersebut)
+        return redirect()->route('travelinkclub');
     }
 
     /**

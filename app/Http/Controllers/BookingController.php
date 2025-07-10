@@ -6,6 +6,16 @@ use Illuminate\Support\Facades\Auth;
 
 class BookingController extends Controller
 {
+    public function history()
+    {
+        $user = auth()->user();
+        $bookings = \App\Models\Booking::with('package')
+            ->where('user_id', $user->id)
+            ->latest()
+            ->get();
+
+        return view('frontend.booking_history', compact('bookings'));
+    }
     public function create($packageId)
     {
         return view('frontend.booking_form', [
